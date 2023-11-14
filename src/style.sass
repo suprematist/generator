@@ -1,0 +1,83 @@
+
+*
+	padding: 0
+	margin: 0
+
+ul
+	list-style: none
+
+textarea
+	font: inherit
+	font-size: inherit
+	line-height: inherit
+	color: inherit
+	resize: none
+	background: none
+	border: none
+	outline: none
+
+button
+	font: inherit
+	color: inherit
+	text-align: inherit
+	cursor: pointer
+	user-select: none
+	background: none
+	border: 0
+
+@font-face
+	font-family: Inter
+	font-style: normal
+	font-weight: 100 900
+	src: url("./assets/Inter-roman.var.woff2?v=3.19") format("woff2")
+	font-display: swap
+	/* stylelint-disable-next-line property-no-unknown */
+	font-named-instance: 'Regular'
+
+@font-face
+	font-family: Inter
+	font-style: italic
+	font-weight: 100 900
+	src: url("./assets/Inter-italic.var.woff2?v=3.19") format("woff2")
+	font-display: swap
+	/* stylelint-disable-next-line property-no-unknown */
+	font-named-instance: 'Italic'
+
+:root
+	--s-font-size: 40px
+	--s-font-weight: 400
+	--s-line-height: 48px
+
+	--s-color-body: oklch(96% 0 0deg)
+	--s-color-muted: oklch(67% 0 0deg)
+	--s-color-border: oklch(35% 0 0deg)
+	--s-color-placeholder: oklch(56% 0 0deg)
+	--s-color-background: oklch(18% 0 0deg)
+	--s-color-button-background: oklch(25% 0 0deg)
+	--s-color-button-hover-background: oklch(35% 0 0deg)
+	--s-color-button-active-background: oklch(40% 0 0deg)
+
+	--s-color-post-background: oklch(0% 0 0deg)
+	--s-color-post-button-background: transparent
+	--s-color-post-button-hover-background: oklch(20% 0 0deg)
+	--s-color-post-button-active-background: oklch(30% 0 0deg)
+
+::placeholder
+	font-weight: var(--s-font-weight)
+	color: var(--s-color-placeholder)
+
+html
+	padding: 20px 20px 80px
+	font-family: Inter, -apple-system, 'Helvetica Neue', Helvetica, Arial, sans-serif
+	font-size: var(--s-font-size)
+	font-weight: var(--s-font-weight)
+	line-height: var(--s-line-height)
+	color: var(--s-color-body)
+	background: var(--s-color-background)
+
+.s-visually-hidden
+	position: absolute !important
+	width: 1px
+	height: 1px
+	overflow: hidden
+	clip: rect(1px, 1px, 1px, 1px)
