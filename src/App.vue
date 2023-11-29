@@ -93,7 +93,7 @@ watch(
 			}
 
 			rendering.value = false
-		}, 1000)
+		}, 3000)
 	},
 	{ immediate: true }
 )
