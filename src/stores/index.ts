@@ -8,7 +8,7 @@ type Post = {
 	dimensions: string
 	location: string
 	author: string
-	image: string | undefined
+	image: string
 	imageLeft: string
 	imageTop: string
 	text: string
@@ -21,7 +21,7 @@ const DEFAULT_POST: Post = {
 	dimensions: '',
 	location: '',
 	author: 'Malevich',
-	image: undefined,
+	image: '',
 	imageLeft: '0px',
 	imageTop: '0px',
 	text: ''
