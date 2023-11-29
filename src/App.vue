@@ -33,7 +33,7 @@
 <script setup lang="ts">
 import { useStore } from '@nanostores/vue'
 import { useClipboard } from '@vueuse/core'
-import html2canvas from 'html2canvas'
+import dom2image from 'dom-to-image'
 import { nextTick, ref, watch } from 'vue'
 
 import { SButton } from './components/index.js'
@@ -86,8 +86,7 @@ watch(
 
 			let images = [image1.value, image2.value, image3.value]
 			for (let [index, el] of images.entries()) {
-				let canvas = await html2canvas(el, { logging: false })
-				let src = canvas.toDataURL('image/png')
+				let src = await dom2image.toPng(el)
 				let filename = `${author} ${title} ${year} ${index + 1}.png`
 				renders.value[index] = { src, filename }
 			}
