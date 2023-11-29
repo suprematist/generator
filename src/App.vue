@@ -86,7 +86,7 @@ watch(
 
 			let images = [image1.value, image2.value, image3.value]
 			for (let [index, el] of images.entries()) {
-				let canvas = await html2canvas(el)
+				let canvas = await html2canvas(el, { logging: false })
 				let src = canvas.toDataURL('image/png')
 				let filename = `${author} ${title} ${year} ${index + 1}.png`
 				renders.value[index] = { src, filename }
