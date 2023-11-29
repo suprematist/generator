@@ -22,11 +22,12 @@
 				v-for="(render, index) in renders"
 				:key="index"
 			)
-				s-button.page__renders-link(
+				a(
 					:href="render.src"
 					:download="render.filename"
 				)
-					img.page__renders-img(:src="render.src")
+					s-button.page__renders-link
+						img.page__renders-img(:src="render.src")
 </template>
 
 <script setup lang="ts">
