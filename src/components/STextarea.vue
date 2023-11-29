@@ -1,15 +1,20 @@
 <template lang="pug">
 textarea.s-textarea(
   ref="textarea"
-  v-model="input"
+  :value="input"
+	@input="handleInput"
 )
 </template>
 
 <script lang="ts" setup>
-import { syncRef, useTextareaAutosize, useVModel } from '@vueuse/core'
+import { useTextareaAutosize } from '@vueuse/core'
+import { toRefs } from 'vue'
 
 interface Props {
 	modelValue: string
+	modelModifiers?: {
+		dimensions?: boolean
+	}
 }
 
 interface Emits {
@@ -19,10 +24,20 @@ interface Emits {
 const props = defineProps<Props>()
 const emit = defineEmits<Emits>()
 
-const modelValue = useVModel(props, 'modelValue', emit)
-const { textarea, input } = useTextareaAutosize()
+const { modelValue, modelModifiers } = toRefs(props)
 
-syncRef(modelValue, input)
+const { textarea, input } = useTextareaAutosize({ input: modelValue })
+
+function handleInput (event: InputEvent): void {
+	let value = (event.target as HTMLTextAreaElement).value
+	if (modelModifiers?.value?.dimensions) {
+		value = value
+			.replaceAll(/[Xx]/g, '×')
+			.replaceAll('"', '″')
+			.replaceAll(',', '.')
+	}
+	emit('update:modelValue', value)
+}
 </script>
 
 <style lang="sass" scoped>

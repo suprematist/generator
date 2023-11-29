@@ -25,7 +25,7 @@ section.view
 				dt.view__dt Dimensions
 				dd.view__dd
 					s-textarea(
-						v-model="dimensions"
+						v-model.dimensions="dimensions"
 						placeholder="42 × 19 1/5″ \n106.9 × 48.7 cm"
 					)
 			template(v-if="!rendering || (rendering && location)")
