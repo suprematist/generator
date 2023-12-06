@@ -84,7 +84,7 @@ watch(
 			rendering.value = true
 			await nextTick()
 
-			let images = [image1.value, image2.value, image3.value]
+			let images = [image3.value, image2.value, image1.value]
 			for (let [index, el] of images.entries()) {
 				let src = await dom2image.toPng(el)
 				let filename = `${author} ${title} ${year} ${index + 1}.png`
