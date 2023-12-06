@@ -33,7 +33,7 @@ section.view
 				dd.view__dd
 					s-textarea(
 						v-model="location"
-						placeholder="Moscow, Russia\nPrivate collection"
+						placeholder="Private collection\nMoscow, Russia"
 					)
 	footer.view__footer
 		img.view__logo(src="../assets/logo.svg")
