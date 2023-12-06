@@ -30,7 +30,7 @@ const { textarea, input } = useTextareaAutosize({ input: modelValue })
 
 function handleInput (event: InputEvent): void {
 	let value = (event.target as HTMLTextAreaElement).value
-	if (modelModifiers?.value?.dimensions) {
+	if (modelModifiers.value?.dimensions) {
 		value = value
 			.replaceAll(/[Xx]/g, '×')
 			.replaceAll('"', '″')

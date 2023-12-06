@@ -23,7 +23,7 @@ const avatarUrl = computed(() => {
 })
 
 const formattedFullname = computed(() => {
-	return alias?.value ? fullname.value : fullname.value.replaceAll(' ', '<br>')
+	return alias.value ? fullname.value : fullname.value.replaceAll(' ', '<br>')
 })
 </script>
 
