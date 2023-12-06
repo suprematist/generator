@@ -6,9 +6,9 @@ ul.s-authors-list
 		:key="username"
     :class="{ 's-authors-list__item--selected': username === modelValue }"
   )
-    s-button(@click="selectAuthor(username)")
+    s-button(@click="selectAuthor(String(username))")
       s-author(
-        :username="username"
+        :username="String(username)"
         :fullname="author.fullname"
         :alias="author.alias"
       )

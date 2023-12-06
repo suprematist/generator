@@ -25,7 +25,7 @@ const imageUrl = useVModel($post, 'image')
 
 const showUploadButton = computed(() => !imageUrl.value)
 
-function uploadImage (event: InputEvent): void {
+function uploadImage (event: Event): void {
 	let input = event.target as HTMLInputElement
 	let file = input.files?.[0]
 

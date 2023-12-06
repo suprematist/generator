@@ -28,7 +28,7 @@ const { modelValue, modelModifiers } = toRefs(props)
 
 const { textarea, input } = useTextareaAutosize({ input: modelValue })
 
-function handleInput (event: InputEvent): void {
+function handleInput (event: Event): void {
 	let value = (event.target as HTMLTextAreaElement).value
 	if (modelModifiers.value?.dimensions) {
 		value = value
