@@ -55,7 +55,10 @@ watchEffect(() => {
 		text.value += `${medium.value.replaceAll('\n', ' ')}. `
 	}
 	if (location.value) {
-		text.value += `Lives at the ${location.value.replaceAll('\n', ' ')}.`
+		let formattedLocation = location.value
+			.replaceAll('\n', ', ')
+			.replaceAll('The ', '')
+		text.value += `Lives at the ${formattedLocation}.`
 	}
 	text.value += '\n\n'
 	if (dimensions.value) {
