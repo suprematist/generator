@@ -19,15 +19,15 @@
 			s-button(@click="resetPost") Clear
 		ul.page__renders
 			li(
-				v-for="(render, index) in renders"
+				v-for="(item, index) in renders"
 				:key="index"
 			)
 				a(
-					:href="render.src"
-					:download="render.filename"
+					:href="item.src"
+					:download="item.filename"
 				)
 					s-button.page__renders-link
-						img.page__renders-img(:src="render.src")
+						img.page__renders-img(:src="item.src")
 </template>
 
 <script setup lang="ts">
@@ -59,7 +59,7 @@ onUpdated(render)
 let timeoutId: ReturnType<typeof setTimeout> | null = null
 let skipNext = false
 
-function resetTimeout () {
+function resetTimeout (): void {
 	if (timeoutId) {
 		clearTimeout(timeoutId)
 		timeoutId = null
