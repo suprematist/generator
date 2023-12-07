@@ -34,7 +34,7 @@
 import { useStore } from '@nanostores/vue'
 import { useClipboard } from '@vueuse/core'
 import dom2image from 'dom-to-image'
-import { nextTick, ref, watch } from 'vue'
+import { nextTick, onUpdated, ref } from 'vue'
 
 import { SButton } from './components/index.js'
 import { useVModel } from './composables/index.js'
@@ -54,48 +54,63 @@ const text = useVModel($post, 'text')
 const rendering = ref(false)
 const renders = ref<Array<{ src: string; filename: string }>>([])
 
+onUpdated(render)
+
 let timeoutId: ReturnType<typeof setTimeout> | null = null
+let skipNext = false
 
-watch(
-	[post, image1, image2, image3],
-	async () => {
-		if (rendering.value) return
+function resetTimeout () {
+	if (timeoutId) {
+		clearTimeout(timeoutId)
+		timeoutId = null
+	}
+}
 
-		if (timeoutId) {
-			clearTimeout(timeoutId)
-			timeoutId = null
+async function render (): Promise<void> {
+	let { year, title, author, image } = post.value
+
+	// prevent multiple rendering
+	if (skipNext) return
+
+	// prevent rendering if required data is missing
+	if (
+		!title ||
+		!year ||
+		!author ||
+		!image ||
+		!image1.value ||
+		!image2.value ||
+		!image3.value
+	) {
+		resetTimeout()
+		skipNext = true
+		renders.value = []
+		await nextTick()
+		skipNext = false
+		return
+	}
+
+	resetTimeout()
+
+	timeoutId = setTimeout(async () => {
+		skipNext = true
+		renders.value = []
+		rendering.value = true
+		await nextTick()
+
+		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
+		for (let [index, el] of images.entries()) {
+			let src = await dom2image.toPng(el)
+			let filename = `${author} ${title} ${year} ${index + 1}.png`
+			renders.value[index] = { src, filename }
+			await nextTick()
 		}
 
-		timeoutId = setTimeout(async () => {
-			let { year, title, author, image } = post.value
-			if (
-				!title ||
-				!year ||
-				!author ||
-				!image ||
-				!image1.value ||
-				!image2.value ||
-				!image3.value
-			) {
-				renders.value = []
-				return
-			}
-
-			rendering.value = true
-			await nextTick()
-
-			let images = [image2.value, image3.value, image1.value]
-			for (let [index, el] of images.entries()) {
-				let src = await dom2image.toPng(el)
-				let filename = `${author} ${title} ${year} ${index + 1}.png`
-				renders.value[index] = { src, filename }
-			}
-
-			rendering.value = false
-		}, 3000)
-	},
-	{ immediate: true }
-)
+		rendering.value = false
+		await nextTick()
+		skipNext = false
+	}, 3000)
+}
 
 const { copy, copied } = useClipboard({ source: text })
 </script>
