@@ -4,6 +4,7 @@ section.view
 		s-textarea(
 			v-model="title"
 			placeholder="Suprematist Composition"
+			:rendering="rendering"
 		)
 	main.view__main
 		dl.view__dl
@@ -13,6 +14,7 @@ section.view
 					s-textarea(
 						v-model="year"
 						placeholder="1920s"
+						:rendering="rendering"
 					)
 			template(v-if="!rendering || (rendering && medium)")
 				dt.view__dt Medium
@@ -20,6 +22,7 @@ section.view
 					s-textarea(
 						v-model="medium"
 						placeholder="Oil on canvas"
+						:rendering="rendering"
 					)
 			template(v-if="!rendering || (rendering && dimensions)")
 				dt.view__dt Dimensions
@@ -27,6 +30,7 @@ section.view
 					s-textarea(
 						v-model.dimensions="dimensions"
 						placeholder="42 × 19 1/5″ \n106.9 × 48.7 cm"
+						:rendering="rendering"
 					)
 			template(v-if="!rendering || (rendering && location)")
 				dt.view__dt Location
@@ -34,6 +38,7 @@ section.view
 					s-textarea(
 						v-model="location"
 						placeholder="Private collection\nMoscow, Russia"
+						:rendering="rendering"
 					)
 	footer.view__footer
 		img.view__logo(src="../assets/logo.svg")

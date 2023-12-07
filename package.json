@@ -15,14 +15,13 @@
     "@nanostores/persistent": "^0.9.1",
     "@nanostores/vue": "^0.10.0",
     "@vueuse/core": "^10.7.0",
-    "dom-to-image": "^2.6.0",
+    "html2canvas": "^1.4.1",
     "nanostores": "^0.9.5",
     "vue": "^3.3.10"
   },
   "devDependencies": {
     "@postanu/eslint-config": "^4.2.0",
     "@postanu/stylelint-config": "^0.7.7",
-    "@types/dom-to-image": "^2.6.7",
     "@typescript-eslint/eslint-plugin": "^6.13.2",
     "@typescript-eslint/parser": "^6.13.2",
     "@vitejs/plugin-vue": "^4.5.1",
