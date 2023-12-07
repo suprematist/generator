@@ -100,13 +100,20 @@ async function render (): Promise<void> {
 
 		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
 		for (let [index, el] of images.entries()) {
-			let canvas = await html2canvas(el, { logging: false })
-				.catch(error => {
-					console.error(error)
-					return null
-				})
-			if (!canvas) continue
-			let src = canvas.toDataURL('image/png')
+			let src = await new Promise<null | string>(resolve => {
+				html2canvas(el, { logging: false })
+					.then(canvas => {
+						canvas.toBlob(blob => {
+							resolve(blob ? URL.createObjectURL(blob) : null)
+						}, 'image/png')
+					})
+					.catch(error => {
+						console.error(error)
+						resolve(null)
+					})
+			})
+			if (!src) continue
+
 			let filename = `${author}_${title}_${year}_${index + 1}.png`
 			renders.value[index] = { src, filename }
 			await nextTick()
