@@ -100,7 +100,10 @@ async function render (): Promise<void> {
 
 		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
 		for (let [index, el] of images.entries()) {
-			let src = await dom2image.toPng(el)
+			let src = await dom2image.toPng(el).catch(error => {
+				console.error(error)
+				return ''
+			})
 			let filename = `${author} ${title} ${year} ${index + 1}.png`
 			renders.value[index] = { src, filename }
 			await nextTick()
