@@ -31,6 +31,9 @@ function uploadImage (event: Event): void {
 
 	if (!file) return
 
+	if (imageUrl.value) {
+		URL.revokeObjectURL(imageUrl.value)
+	}
 	imageUrl.value = URL.createObjectURL(file)
 }
 </script>
