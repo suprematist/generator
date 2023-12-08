@@ -31,12 +31,7 @@ function uploadImage (event: Event): void {
 
 	if (!file) return
 
-	let reader = new FileReader()
-	reader.addEventListener('load', readerEvent => {
-		let image = readerEvent.target?.result as string
-		imageUrl.value = image
-	})
-	reader.readAsDataURL(file)
+	imageUrl.value = URL.createObjectURL(file)
 }
 </script>
 
