@@ -115,6 +115,7 @@ async function render (): Promise<void> {
 			if (!src) continue
 
 			let filename = `${author}_${title}_${year}_${index + 1}.png`
+			filename = filename.replaceAll(/\s/g, '-')
 			renders.value[index] = { src, filename }
 			await nextTick()
 		}
