@@ -2,6 +2,7 @@
   "name": "@suprematistcc/generator",
   "private": true,
   "type": "module",
+  "packageManager": "pnpm@10.10.0",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
@@ -12,12 +13,12 @@
     "test": "pnpm run /^test:/"
   },
   "dependencies": {
-    "@nanostores/persistent": "^0.9.1",
-    "@nanostores/vue": "^0.10.0",
-    "@vueuse/core": "^10.7.0",
+    "@nanostores/persistent": "^1.0.0",
+    "@nanostores/vue": "^1.0.0",
+    "@vueuse/core": "^13.2.0",
     "html2canvas": "^1.4.1",
-    "nanostores": "^0.9.5",
-    "vue": "^3.3.10"
+    "nanostores": "^1.0.1",
+    "vue": "^3.5.14"
   },
   "devDependencies": {
     "@postanu/eslint-config": "^4.2.0",
@@ -42,8 +43,8 @@
     "sass": "^1.69.5",
     "stylelint": "^15.11.0",
     "typescript": "^5.3.3",
-    "vite": "^5.0.6",
+    "vite": "^6.3.5",
     "vue-eslint-parser": "^9.3.2",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^2.2.10"
   }
 }
