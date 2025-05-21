@@ -44,6 +44,7 @@
     "stylelint": "^15.11.0",
     "typescript": "^5.3.3",
     "vite": "^6.3.5",
+    "vite-plugin-vue-devtools": "^7.7.6",
     "vue-eslint-parser": "^9.3.2",
     "vue-tsc": "^2.2.10"
   }
