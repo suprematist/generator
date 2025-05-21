@@ -1,9 +1,10 @@
-<template lang="pug">
-.view
-	s-textarea(
-		v-model="text"
-		:placeholder="placeholder"
-	)
+<template>
+	<div class="view">
+		<s-textarea
+			v-model="text"
+			:placeholder="placeholder"
+		></s-textarea>
+	</div>
 </template>
 
 <script lang="ts" setup>

@@ -1,14 +1,18 @@
-<template lang="pug">
-transition(name="fade")
-	.authors-list-view(
-		v-show="show"
-		ref="el"
-	)
-		s-authors-list.view__list(
-			v-model="selected"
-			:authors="authors"
-			@update:model-value="close()"
-		)
+<template>
+	<transition name="fade">
+		<div
+			v-show="show"
+			ref="el"
+			class="authors-list-view"
+		>
+			<s-authors-list
+				v-model="selected"
+				:authors="authors"
+				@update:model-value="close()"
+				class="view__list"
+			></s-authors-list>
+		</div>
+	</transition>
 </template>
 
 <script lang="ts" setup>

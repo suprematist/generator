@@ -1,17 +1,21 @@
-<template lang="pug">
-ul.s-authors-list
-  li.s-authors-list__item(
-    v-for="(author, username) in authors"
-    :id="'author-' + username"
-		:key="username"
-    :class="{ 's-authors-list__item--selected': username === modelValue }"
-  )
-    s-button(@click="selectAuthor(String(username))")
-      s-author(
-        :username="String(username)"
-        :fullname="author.fullname"
-        :alias="author.alias"
-      )
+<template>
+  <ul class="s-authors-list">
+    <li
+      v-for="(author, username) in authors"
+      :id="'author-' + username"
+      :key="username"
+      class="s-authors-list__item"
+      :class="{ 's-authors-list__item--selected': username === modelValue }"
+    >
+      <s-button @click="selectAuthor(String(username))">
+        <s-author
+          :username="String(username)"
+          :fullname="author.fullname"
+          :alias="author.alias"
+        />
+      </s-button>
+    </li>
+  </ul>
 </template>
 
 <script lang="ts" setup>

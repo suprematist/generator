@@ -1,12 +1,13 @@
-<template lang="pug">
-.view(ref="el")
-	img.view__image(
-		v-if="image"
-		ref="imageEl"
-		:class="`view__image--${imageOrientation}`"
-		:style="imageStyle"
-		:src="image"
-	)
+<template>
+	<div class="view" ref="el">
+		<img
+			v-if="image"
+			ref="imageEl"
+			:class="`view__image view__image--${imageOrientation}`"
+			:style="imageStyle"
+			:src="image"
+		/>
+	</div>
 </template>
 
 <script lang="ts" setup>
@@ -87,8 +88,8 @@ useEventListener(imageEl, 'touchmove', event => {
 
 .view__image
 	position: absolute
-	object-fit: cover
 	cursor: all-scroll
+	object-fit: cover
 
 .view__image--portrait
 	width: 1080px
