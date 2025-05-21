@@ -1,17 +1,21 @@
-<template lang="pug">
-.view
-	input.s-visually-hidden(
-		id="main-image"
-		type="file"
-		accept="image/*"
-		@change="uploadImage"
-	)
-	label.view__label(for="main-image")
-		s-button.view__button(v-if="showUploadButton") Upload image
-		img.view__image(
-			v-else
-			:src="imageUrl"
-		)
+<template>
+	<div class="view">
+		<input
+			id="main-image"
+			type="file"
+			accept="image/*"
+			@change="uploadImage"
+			class="s-visually-hidden"
+		/>
+		<label class="view__label" for="main-image">
+			<s-button v-if="showUploadButton" class="view__button">Upload image</s-button>
+			<img
+				v-else
+				:src="imageUrl"
+				class="view__image"
+			/>
+		</label>
+	</div>
 </template>
 
 <script lang="ts" setup>

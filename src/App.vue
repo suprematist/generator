@@ -1,33 +1,45 @@
-<template lang="pug">
-.page
-	ul.page__images
-		li(ref="image1")
-			image-description-view(:rendering="rendering")
-		li(ref="image2")
-			image-main-view
-		li(
-			v-if="post.image"
-			ref="image3"
-		)
-			image-fullscreen-view
-	.page__controls
-		text-view
-		.page__buttons
-			s-button(@click="copy(text)")
-				span(v-if="!copied") Copy
-				span(v-else) Copied
-			s-button(@click="resetPost") Clear
-		ul.page__renders
-			li(
-				v-for="(item, index) in renders"
-				:key="index"
-			)
-				a(
-					:href="item.src"
-					:download="item.filename"
-				)
-					s-button.page__renders-link
-						img.page__renders-img(:src="item.src")
+<template>
+	<div class="page">
+		<ul class="page__images">
+			<li ref="image1">
+				<image-description-view :rendering="rendering" />
+			</li>
+			<li ref="image2">
+				<image-main-view />
+			</li>
+			<li
+				v-if="post.image"
+				ref="image3"
+			>
+				<image-fullscreen-view />
+			</li>
+		</ul>
+		<div class="page__controls">
+			<text-view />
+			<div class="page__buttons">
+				<s-button @click="copy(text)">
+					<span v-if="!copied">Copy</span>
+					<span v-else>Copied</span>
+				</s-button>
+				<s-button @click="resetPost">Clear</s-button>
+			</div>
+			<ul class="page__renders">
+				<li
+					v-for="(item, index) in renders"
+					:key="index"
+				>
+					<a
+						:href="item.src"
+						:download="item.filename"
+					>
+						<s-button class="page__renders-link">
+							<img class="page__renders-img" :src="item.src" />
+						</s-button>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
 </template>
 
 <script setup lang="ts">

@@ -1,9 +1,9 @@
-<template lang="pug">
-s-author(
-  :username="username"
-  :fullname="author.fullname"
-  :alias="author.alias"
-)
+<template>
+  <s-author
+    :username="username"
+    :fullname="author.fullname"
+    :alias="author.alias"
+  />
 </template>
 
 <script lang="ts" setup>

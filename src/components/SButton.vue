@@ -1,6 +1,7 @@
-<template lang="pug">
-button.s-button
-  slot
+<template>
+  <button class="s-button">
+    <slot></slot>
+  </button>
 </template>
 
 <script lang="ts" setup>

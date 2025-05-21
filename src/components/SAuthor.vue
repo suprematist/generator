@@ -1,9 +1,11 @@
-<template lang="pug">
-.s-author
-	img.s-author__avatar(:src="avatarUrl")
-	div
-		.s-author__name(v-html="formattedFullname")
-		.s-author__alias(v-html="alias")
+<template>
+	<div class="s-author">
+		<img class="s-author__avatar" :src="avatarUrl" />
+		<div>
+			<div class="s-author__name" v-html="formattedFullname"></div>
+			<div class="s-author__alias" v-html="alias"></div>
+		</div>
+	</div>
 </template>
 
 <script lang="ts" setup>

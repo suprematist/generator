@@ -1,14 +1,16 @@
-<template lang="pug">
-textarea.s-textarea(
-	v-if="!rendering"
-  ref="textarea"
-  :value="input"
-	@input="handleInput"
-)
-.s-textarea(
-	v-else
-	v-html="inputHtml"
-)
+<template>
+	<textarea
+		v-if="!rendering"
+		ref="textarea"
+		:value="input"
+		@input="handleInput"
+		class="s-textarea"
+	></textarea>
+	<div
+		v-else
+		v-html="inputHtml"
+		class="s-textarea"
+	></div>
 </template>
 
 <script lang="ts" setup>
@@ -52,5 +54,5 @@ function handleInput (event: Event): void {
 
 <style lang="sass" scoped>
 .s-textarea
-  width: 100%
+	width: 100%
 </style>

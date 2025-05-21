@@ -24,10 +24,5 @@
     "src/**/*.ts",
     "src/**/*.vue",
     "vite.config.ts"
-  ],
-  "vueCompilerOptions": {
-    "plugins": [
-      "@vue/language-plugin-pug"
-    ]
-  }
+  ]
 }

@@ -1,54 +1,69 @@
-<template lang="pug">
-section.view
-	header.view__header
-		s-textarea(
-			v-model="title"
-			placeholder="Suprematist Composition"
-			:rendering="rendering"
-		)
-	main.view__main
-		dl.view__dl
-			template(v-if="!rendering || (rendering && year)")
-				dt.view__dt Year
-				dd.view__dd
-					s-textarea(
-						v-model="year"
-						placeholder="1920s"
-						:rendering="rendering"
-					)
-			template(v-if="!rendering || (rendering && medium)")
-				dt.view__dt Medium
-				dd.view__dd
-					s-textarea(
-						v-model="medium"
-						placeholder="Oil on canvas"
-						:rendering="rendering"
-					)
-			template(v-if="!rendering || (rendering && dimensions)")
-				dt.view__dt Dimensions
-				dd.view__dd
-					s-textarea(
-						v-model.dimensions="dimensions"
-						placeholder="42 × 19 1/5″ \n106.9 × 48.7 cm"
-						:rendering="rendering"
-					)
-			template(v-if="!rendering || (rendering && location)")
-				dt.view__dt Location
-				dd.view__dd
-					s-textarea(
-						v-model="location"
-						placeholder="Private collection\nMoscow, Russia"
-						:rendering="rendering"
-					)
-	footer.view__footer
-		img.view__logo(src="../assets/logo.svg")
-		div
-			s-button.view__author(@click="openAuthorsList()")
-				author-view(:username="author")
-	authors-list-view(
-		v-model:show="showAuthorsList"
-		v-model:selected="author"
-	)
+<template>
+	<section class="view">
+		<header class="view__header">
+			<s-textarea
+				v-model="title"
+				placeholder="Suprematist Composition"
+				:rendering="rendering"
+			></s-textarea>
+		</header>
+		<main class="view__main">
+			<dl class="view__dl">
+				<template v-if="!rendering || (rendering && year)">
+					<dt class="view__dt">Year</dt>
+					<dd class="view__dd">
+						<s-textarea
+							v-model="year"
+							placeholder="1920s"
+							:rendering="rendering"
+						></s-textarea>
+					</dd>
+				</template>
+				<template v-if="!rendering || (rendering && medium)">
+					<dt class="view__dt">Medium</dt>
+					<dd class="view__dd">
+						<s-textarea
+							v-model="medium"
+							placeholder="Oil on canvas"
+							:rendering="rendering"
+						></s-textarea>
+					</dd>
+				</template>
+				<template v-if="!rendering || (rendering && dimensions)">
+					<dt class="view__dt">Dimensions</dt>
+					<dd class="view__dd">
+						<s-textarea
+							v-model.dimensions="dimensions"
+							placeholder="42 × 19 1/5″ \n106.9 × 48.7 cm"
+							:rendering="rendering"
+						></s-textarea>
+					</dd>
+				</template>
+				<template v-if="!rendering || (rendering && location)">
+					<dt class="view__dt">Location</dt>
+					<dd class="view__dd">
+						<s-textarea
+							v-model="location"
+							placeholder="Private collection\nMoscow, Russia"
+							:rendering="rendering"
+						></s-textarea>
+					</dd>
+				</template>
+			</dl>
+		</main>
+		<footer class="view__footer">
+			<img class="view__logo" src="../assets/logo.svg" />
+			<div>
+				<s-button class="view__author" @click="openAuthorsList()">
+					<author-view :username="author"></author-view>
+				</s-button>
+			</div>
+		</footer>
+		<authors-list-view
+			v-model:show="showAuthorsList"
+			v-model:selected="author"
+		></authors-list-view>
+	</section>
 </template>
 
 <script lang="ts" setup>
