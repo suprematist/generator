@@ -108,7 +108,7 @@ function openAuthorsList(): void {
 	display: flex;
 	flex-direction: column;
 	width: 1080px;
-	height: 1080px;
+	height: 1350px;
 	padding: 40px;
 	background: var(--s-color-post-background);
 }

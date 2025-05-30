@@ -48,7 +48,7 @@ function uploadImage(event: Event): void {
 	position: relative;
 	box-sizing: border-box;
 	width: 1080px;
-	height: 1080px;
+	height: 1350px;
 	padding: 40px;
 	background: var(--s-color-post-background);
 }

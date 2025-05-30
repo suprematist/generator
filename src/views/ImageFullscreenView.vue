@@ -52,7 +52,7 @@ useDraggable(imageEl, {
 	preventDefault: true,
 	onMove: ({ x, y }) => {
 		let top = imageOrientation.value === 'portrait'
-			? Math.max(Math.min(y - unref(elTop), 0), 1080 - (imageEl.value?.height ?? 0))
+			? Math.max(Math.min(y - unref(elTop), 0), 1350 - (imageEl.value?.height ?? 0))
 			: 0
 		let left = imageOrientation.value === 'landscape'
 			? Math.max(Math.min(x - unref(elLeft), 0), 1080 - (imageEl.value?.width ?? 0))
@@ -83,7 +83,7 @@ useEventListener(imageEl, 'touchmove', (event) => {
 .view {
 	position: relative;
 	width: 1080px;
-	height: 1080px;
+	height: 1350px;
 	overflow: hidden;
 	background: var(--s-color-post-background);
 }
@@ -99,6 +99,6 @@ useEventListener(imageEl, 'touchmove', (event) => {
 }
 
 .view__image--landscape {
-	height: 1080px;
+	height: 1350px;
 }
 </style>
