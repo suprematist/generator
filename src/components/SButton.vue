@@ -1,11 +1,11 @@
+<script lang="ts" setup>
+</script>
+
 <template>
   <button class="s-button">
     <slot></slot>
   </button>
 </template>
-
-<script lang="ts" setup>
-</script>
 
 <style lang="sass" scoped>
 .s-button

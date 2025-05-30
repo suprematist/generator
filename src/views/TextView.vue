@@ -1,17 +1,6 @@
-<template>
-	<div class="view">
-		<s-textarea
-			v-model="text"
-			:placeholder="placeholder"
-		></s-textarea>
-	</div>
-</template>
-
 <script lang="ts" setup>
-import { computed, watchEffect } from 'vue'
-
 import type { AuthorsList, Hashtags } from '../types/index.js'
-
+import { computed, watchEffect } from 'vue'
 import { STextarea } from '../components/index.js'
 import { useVModels } from '../composables/index.js'
 import authorsData from '../data/authors.json'
@@ -28,28 +17,28 @@ const {
 	location,
 	dimensions,
 	author,
-	text
+	text,
 } = useVModels($post)
 
 watchEffect(() => {
 	if (
-		!title.value &&
-		!year.value &&
-		!medium.value &&
-		!location.value &&
-		!dimensions.value
+		!title.value
+		&& !year.value
+		&& !medium.value
+		&& !location.value
+		&& !dimensions.value
 	) {
 		text.value = ''
 		return
 	}
 	text.value = ''
-	text.value += title.value ? `${title.value.replaceAll('\n', ', ')}` : ''
+	text.value += title.value ? title.value.replaceAll('\n', ', ') : ''
 	if (year.value) {
 		text.value += `, ${year.value}`
 	}
 	text.value += '\n'
 	if (author.value) {
-		text.value += `${authors[author.value].fullname}`
+		text.value += authors[author.value].fullname
 	}
 	text.value += '\n\n'
 	if (medium.value) {
@@ -70,15 +59,24 @@ watchEffect(() => {
 })
 
 const placeholder = computed(() => {
-	return 'Suprematist Composition, 1920s\n' +
-		'Kazimir Severinovich Malevich\n\n' +
-		'Oil on canvas. ' +
-		'Lives at the Private Collection, Moscow, Russia.\n\n' +
-		'42 × 19 1/5″ \n106.9 × 48.7 cm\n\n' +
-		`#${hashtags.join(' #')} ` +
-		`#${authors[author.value].hashtags.join(' #')}`
+	return 'Suprematist Composition, 1920s\n'
+		+ 'Kazimir Severinovich Malevich\n\n'
+		+ 'Oil on canvas. '
+		+ 'Lives at the Private Collection, Moscow, Russia.\n\n'
+		+ '42 × 19 1/5″ \n106.9 × 48.7 cm\n\n'
+		+ `#${hashtags.join(' #')} `
+		+ `#${authors[author.value].hashtags.join(' #')}`
 })
 </script>
+
+<template>
+	<div class="view">
+		<s-textarea
+			v-model="text"
+			:placeholder="placeholder"
+		></s-textarea>
+	</div>
+</template>
 
 <style lang="sass" scoped>
 .view

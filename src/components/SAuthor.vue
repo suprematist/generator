@@ -1,13 +1,3 @@
-<template>
-	<div class="s-author">
-		<img class="s-author__avatar" :src="avatarUrl" />
-		<div>
-			<div class="s-author__name" v-html="formattedFullname"></div>
-			<div class="s-author__alias" v-html="alias"></div>
-		</div>
-	</div>
-</template>
-
 <script lang="ts" setup>
 import { computed, toRefs } from 'vue'
 
@@ -28,6 +18,16 @@ const formattedFullname = computed(() => {
 	return alias.value ? fullname.value : fullname.value.replaceAll(' ', '<br>')
 })
 </script>
+
+<template>
+	<div class="s-author">
+		<img class="s-author__avatar" :src="avatarUrl" />
+		<div>
+			<div class="s-author__name" v-html="formattedFullname"></div>
+			<div class="s-author__alias" v-html="alias"></div>
+		</div>
+	</div>
+</template>
 
 <style lang="sass" scoped>
 .s-author

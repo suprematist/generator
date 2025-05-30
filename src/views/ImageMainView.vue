@@ -1,3 +1,28 @@
+<script lang="ts" setup>
+import { computed } from 'vue'
+import { SButton } from '../components/index.js'
+import { useVModel } from '../composables/index.js'
+import { $post } from '../stores/index.js'
+
+const imageUrl = useVModel($post, 'image')
+
+const showUploadButton = computed(() => !imageUrl.value)
+
+function uploadImage(event: Event): void {
+	let input = event.target as HTMLInputElement
+	let file = input.files?.[0]
+
+	if (!file) {
+		return
+	}
+
+	if (imageUrl.value) {
+		URL.revokeObjectURL(imageUrl.value)
+	}
+	imageUrl.value = URL.createObjectURL(file)
+}
+</script>
+
 <template>
 	<div class="view">
 		<input
@@ -17,30 +42,6 @@
 		</label>
 	</div>
 </template>
-
-<script lang="ts" setup>
-import { computed } from 'vue'
-
-import { SButton } from '../components/index.js'
-import { useVModel } from '../composables/index.js'
-import { $post } from '../stores/index.js'
-
-const imageUrl = useVModel($post, 'image')
-
-const showUploadButton = computed(() => !imageUrl.value)
-
-function uploadImage (event: Event): void {
-	let input = event.target as HTMLInputElement
-	let file = input.files?.[0]
-
-	if (!file) return
-
-	if (imageUrl.value) {
-		URL.revokeObjectURL(imageUrl.value)
-	}
-	imageUrl.value = URL.createObjectURL(file)
-}
-</script>
 
 <style lang="sass" scoped>
 .view

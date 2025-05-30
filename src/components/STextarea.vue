@@ -1,18 +1,3 @@
-<template>
-	<textarea
-		v-if="!rendering"
-		ref="textarea"
-		:value="input"
-		@input="handleInput"
-		class="s-textarea"
-	></textarea>
-	<div
-		v-else
-		v-html="inputHtml"
-		class="s-textarea"
-	></div>
-</template>
-
 <script lang="ts" setup>
 import { useTextareaAutosize } from '@vueuse/core'
 import { computed, toRefs } from 'vue'
@@ -40,7 +25,7 @@ const inputHtml = computed(() => {
 	return input.value.replaceAll('\n', '<br>')
 })
 
-function handleInput (event: Event): void {
+function handleInput(event: Event): void {
 	let value = (event.target as HTMLTextAreaElement).value
 	if (modelModifiers.value?.dimensions) {
 		value = value
@@ -51,6 +36,21 @@ function handleInput (event: Event): void {
 	emit('update:modelValue', value)
 }
 </script>
+
+<template>
+	<textarea
+		v-if="!rendering"
+		ref="textarea"
+		:value="input"
+		@input="handleInput"
+		class="s-textarea"
+	></textarea>
+	<div
+		v-else
+		v-html="inputHtml"
+		class="s-textarea"
+	></div>
+</template>
 
 <style lang="sass" scoped>
 .s-textarea

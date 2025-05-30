@@ -1,3 +1,34 @@
+<script lang="ts" setup>
+import { ref, toRefs } from 'vue'
+import { SButton, STextarea } from '../components/index.js'
+import { useVModels } from '../composables/index.js'
+import { $post } from '../stores/index.js'
+import AuthorsListView from './AuthorsListView.vue'
+import AuthorView from './AuthorView.vue'
+
+interface Props {
+	rendering: boolean
+}
+
+const props = defineProps<Props>()
+const { rendering } = toRefs(props)
+
+const {
+	title,
+	year,
+	medium,
+	dimensions,
+	location,
+	author,
+} = useVModels($post)
+
+const showAuthorsList = ref(false)
+
+function openAuthorsList(): void {
+	showAuthorsList.value = true
+}
+</script>
+
 <template>
 	<section class="view">
 		<header class="view__header">
@@ -65,38 +96,6 @@
 		></authors-list-view>
 	</section>
 </template>
-
-<script lang="ts" setup>
-import { ref, toRefs } from 'vue'
-
-import { SButton, STextarea } from '../components/index.js'
-import { useVModels } from '../composables/index.js'
-import { $post } from '../stores/index.js'
-import AuthorView from './AuthorView.vue'
-import AuthorsListView from './AuthorsListView.vue'
-
-interface Props {
-	rendering: boolean
-}
-
-const props = defineProps<Props>()
-const { rendering } = toRefs(props)
-
-const {
-	title,
-	year,
-	medium,
-	dimensions,
-	location,
-	author
-} = useVModels($post)
-
-const showAuthorsList = ref(false)
-
-function openAuthorsList (): void {
-	showAuthorsList.value = true
-}
-</script>
 
 <style lang="sass" scoped>
 .view
