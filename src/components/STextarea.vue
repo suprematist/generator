@@ -52,7 +52,8 @@ function handleInput(event: Event): void {
 	></div>
 </template>
 
-<style lang="sass" scoped>
-.s-textarea
-	width: 100%
+<style scoped>
+.s-textarea {
+	width: 100%;
+}
 </style>

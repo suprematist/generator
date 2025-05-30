@@ -144,40 +144,47 @@ const { copy, copied } = useClipboard({ source: text })
 	</div>
 </template>
 
-<style lang="sass" scoped>
-.page
-	display: flex
-	flex-wrap: wrap
-	gap: 40px
+<style scoped>
+.page {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 40px;
+}
 
-.page__images
-	display: grid
-	gap: 40px
+.page__images {
+	display: grid;
+	gap: 40px;
+}
 
-.page__controls
-	box-sizing: border-box
-	display: flex
-	flex: 1
-	flex-direction: column
-	gap: 180px
-	width: 100%
-	max-width: 1080px
-	padding: 40px
+.page__controls {
+	box-sizing: border-box;
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 180px;
+	width: 100%;
+	max-width: 1080px;
+	padding: 40px;
+}
 
-.page__buttons
-	display: flex
-	justify-content: space-between
-	padding: 20px
+.page__buttons {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+}
 
-.page__renders
-	display: flex
-	gap: 60px
-	margin: 0 20px
+.page__renders {
+	display: flex;
+	gap: 60px;
+	margin: 0 20px;
+}
 
-.page__renders-link
-	display: flex
+.page__renders-link {
+	display: flex;
+}
 
-.page__renders-img
-	width: 150px
-	height: auto
+.page__renders-img {
+	width: 150px;
+	height: auto;
+}
 </style>
