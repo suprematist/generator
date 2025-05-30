@@ -42,20 +42,22 @@ function selectAuthor(username: string): void {
   </ul>
 </template>
 
-<style lang="sass" scoped>
-.s-authors-list
-	display: flex
-	flex-direction: column
-	gap: 96px
+<style scoped>
+.s-authors-list {
+	display: flex;
+	flex-direction: column;
+	gap: 96px;
+}
 
-.s-authors-list__item .s-button
-	--s-button-background: var(--s-color-post-button-background)
-	--s-button-hover-background: var(--s-color-post-button-hover-background)
-	--s-button-active-background: var(--s-color-post-button-active-background)
+.s-authors-list__item .s-button {
+	--s-button-background: var(--s-color-post-button-background);
+	--s-button-hover-background: var(--s-color-post-button-hover-background);
+	--s-button-active-background: var(--s-color-post-button-active-background);
+}
 
-.s-authors-list__item--selected
-	.s-button
-		--s-button-background: var(--s-color-post-button-active-background)
-		--s-button-hover-background: var(--s-color-post-button-active-background)
-		--s-button-active-background: var(--s-color-post-button-active-background)
+.s-authors-list__item--selected .s-button {
+	--s-button-background: var(--s-color-post-button-active-background);
+	--s-button-hover-background: var(--s-color-post-button-active-background);
+	--s-button-active-background: var(--s-color-post-button-active-background);
+}
 </style>

@@ -97,63 +97,75 @@ function openAuthorsList(): void {
 	</section>
 </template>
 
-<style lang="sass" scoped>
-.view
-	position: relative
-	box-sizing: border-box
-	display: flex
-	flex-direction: column
-	width: 1080px
-	height: 1080px
-	padding: 40px
-	background: var(--s-color-post-background)
+<style scoped>
+.view {
+	position: relative;
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
+	width: 1080px;
+	height: 1080px;
+	padding: 40px;
+	background: var(--s-color-post-background);
+}
 
-.view__header
-	display: inline-flex
-	margin-left: 360px
+.view__header {
+	display: inline-flex;
+	margin-left: 360px;
+}
 
-.view__main
-	margin-top: 96px
+.view__main {
+	margin-top: 96px;
+}
 
-.view__dl
-	display: grid
-	grid-template-columns: 360px 1fr
-	gap: 0
+.view__dl {
+	display: grid;
+	grid-template-columns: 360px 1fr;
+	gap: 0;
+}
 
-.view__dt
-	padding: 10px 0 9px
-	font-style: italic
-	color: var(--s-color-muted)
+.view__dt {
+	padding: 10px 0 9px;
+	font-style: italic;
+	color: var(--s-color-muted);
+}
 
-.view__dd
-	display: inline-flex
-	padding: 10px 0 9px
+.view__dd {
+	display: inline-flex;
+	padding: 10px 0 9px;
+}
 
 .view__dt,
-.view__dd
-	border-bottom: 1px solid var(--s-color-border)
+.view__dd {
+	border-bottom: 1px solid var(--s-color-border);
+}
 
 .view__dt:last-of-type,
-.view__dd:last-of-type
-	padding-bottom: 0
-	border-bottom: none
+.view__dd:last-of-type {
+	padding-bottom: 0;
+	border-bottom: none;
+}
 
 .view__dt:first-of-type,
-.view__dd:first-of-type
-	padding-top: 0
+.view__dd:first-of-type {
+	padding-top: 0;
+}
 
-.view__footer
-	display: grid
-	flex: 1
-	grid-template-columns: 360px 1fr
-	gap: 0
-	align-items: flex-end
+.view__footer {
+	display: grid;
+	flex: 1;
+	grid-template-columns: 360px 1fr;
+	gap: 0;
+	align-items: flex-end;
+}
 
-.view__logo
-	margin-bottom: 4px
+.view__logo {
+	margin-bottom: 4px;
+}
 
-.view__author
-	--s-button-background: var(--s-color-post-button-background)
-	--s-button-hover-background: var(--s-color-post-button-hover-background)
-	--s-button-active-background: var(--s-color-post-button-active-background)
+.view__author {
+	--s-button-background: var(--s-color-post-button-background);
+	--s-button-hover-background: var(--s-color-post-button-hover-background);
+	--s-button-active-background: var(--s-color-post-button-active-background);
+}
 </style>

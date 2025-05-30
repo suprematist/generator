@@ -29,17 +29,20 @@ const formattedFullname = computed(() => {
 	</div>
 </template>
 
-<style lang="sass" scoped>
-.s-author
-	display: flex
-	flex-direction: column
-	gap: 48px
-	min-width: 300px
+<style scoped>
+.s-author {
+	display: flex;
+	flex-direction: column;
+	gap: 48px;
+	min-width: 300px;
+}
 
-.s-author__avatar
-	width: 96px
-	height: 96px
+.s-author__avatar {
+	width: 96px;
+	height: 96px;
+}
 
-.s-author__alias
-	color: var(--s-color-muted)
+.s-author__alias {
+	color: var(--s-color-muted);
+}
 </style>

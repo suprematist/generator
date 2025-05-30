@@ -79,22 +79,26 @@ useEventListener(imageEl, 'touchmove', (event) => {
 	</div>
 </template>
 
-<style lang="sass" scoped>
-.view
-	position: relative
-	width: 1080px
-	height: 1080px
-	overflow: hidden
-	background: var(--s-color-post-background)
+<style scoped>
+.view {
+	position: relative;
+	width: 1080px;
+	height: 1080px;
+	overflow: hidden;
+	background: var(--s-color-post-background);
+}
 
-.view__image
-	position: absolute
-	cursor: all-scroll
-	object-fit: cover
+.view__image {
+	position: absolute;
+	cursor: all-scroll;
+	object-fit: cover;
+}
 
-.view__image--portrait
-	width: 1080px
+.view__image--portrait {
+	width: 1080px;
+}
 
-.view__image--landscape
-	height: 1080px
+.view__image--landscape {
+	height: 1080px;
+}
 </style>

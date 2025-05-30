@@ -60,24 +60,28 @@ function close(): void {
 	</transition>
 </template>
 
-<style lang="sass" scoped>
+<style scoped>
 .fade-enter-active,
-.fade-leave-active
-	transition: opacity 0.1s ease-in
+.fade-leave-active {
+	transition: opacity 0.1s ease-in;
+}
 
 .fade-enter-from,
-.fade-leave-to
-	opacity: 0
+.fade-leave-to {
+	opacity: 0;
+}
 
-.authors-list-view
-	position: absolute
-	inset: 0
-	padding-left: 400px
-	overflow: auto
-	background: var(--s-color-post-background)
-	will-change: scroll-position
+.authors-list-view {
+	position: absolute;
+	inset: 0;
+	padding-left: 400px;
+	overflow: auto;
+	background: var(--s-color-post-background);
+	will-change: scroll-position;
+}
 
-.view__list
-	padding-top: 752px
-	padding-bottom: 40px
+.view__list {
+	padding-top: 752px;
+	padding-bottom: 40px;
+}
 </style>

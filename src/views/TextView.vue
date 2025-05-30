@@ -78,9 +78,10 @@ const placeholder = computed(() => {
 	</div>
 </template>
 
-<style lang="sass" scoped>
-.view
-	box-sizing: border-box
-	max-width: 1080px
-	height: fit-content
+<style scoped>
+.view {
+	box-sizing: border-box;
+	max-width: 1080px;
+	height: fit-content;
+}
 </style>
