@@ -11,6 +11,10 @@ interface Props {
 }
 
 const props = defineProps<Props>()
+
+const DIMENSIONS_PLACEHOLDER = `42 × 19 1/5″ \n106.9 × 48.7 cm`
+const LOCATION_PLACEHOLDER = `Private collection\nMoscow, Russia`
+
 const { rendering } = toRefs(props)
 
 const {
@@ -65,7 +69,7 @@ function openAuthorsList(): void {
 					<dd class="view__dd">
 						<s-textarea
 							v-model.dimensions="dimensions"
-							placeholder="42 × 19 1/5″ \n106.9 × 48.7 cm"
+							:placeholder="DIMENSIONS_PLACEHOLDER"
 							:rendering="rendering"
 						></s-textarea>
 					</dd>
@@ -75,7 +79,7 @@ function openAuthorsList(): void {
 					<dd class="view__dd">
 						<s-textarea
 							v-model="location"
-							placeholder="Private collection\nMoscow, Russia"
+							:placeholder="LOCATION_PLACEHOLDER"
 							:rendering="rendering"
 						></s-textarea>
 					</dd>
