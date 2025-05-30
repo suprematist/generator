@@ -1,3 +1,27 @@
+<script lang="ts" setup>
+import type { AuthorsList } from '../types/index.js'
+import { useVModel } from '@vueuse/core'
+import { SAuthor, SButton } from './index.js'
+
+interface Props {
+	modelValue: string
+	authors: AuthorsList
+}
+
+interface Emits {
+	(event: 'update:modelValue', value: string): void
+}
+
+const props = defineProps<Props>()
+const emit = defineEmits<Emits>()
+
+const selectedAuthor = useVModel(props, 'modelValue', emit)
+
+function selectAuthor(username: string): void {
+	selectedAuthor.value = username
+}
+</script>
+
 <template>
   <ul class="s-authors-list">
     <li
@@ -17,32 +41,6 @@
     </li>
   </ul>
 </template>
-
-<script lang="ts" setup>
-import { useVModel } from '@vueuse/core'
-
-import type { AuthorsList } from '../types/index.js'
-
-import { SAuthor, SButton } from './index.js'
-
-interface Props {
-	modelValue: string
-	authors: AuthorsList
-}
-
-interface Emits {
-	(event: 'update:modelValue', value: string): void
-}
-
-const props = defineProps<Props>()
-const emit = defineEmits<Emits>()
-
-const selectedAuthor = useVModel(props, 'modelValue', emit)
-
-function selectAuthor (username: string): void {
-	selectedAuthor.value = username
-}
-</script>
 
 <style lang="sass" scoped>
 .s-authors-list

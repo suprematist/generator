@@ -1,24 +1,6 @@
-<template>
-	<transition name="fade">
-		<div
-			v-show="show"
-			ref="el"
-			class="authors-list-view"
-		>
-			<s-authors-list
-				v-model="selected"
-				:authors="authors"
-				@update:model-value="close()"
-				class="view__list"
-			></s-authors-list>
-		</div>
-	</transition>
-</template>
-
 <script lang="ts" setup>
 import { useVModels } from '@vueuse/core'
-import { nextTick, ref, watchEffect } from 'vue'
-
+import { nextTick, useTemplateRef, watchEffect } from 'vue'
 import { SAuthorsList } from '../components/index.js'
 import authors from '../data/authors.json'
 
@@ -37,11 +19,12 @@ const emit = defineEmits<Emits>()
 
 const { show, selected } = useVModels(props, emit)
 
-const el = ref<HTMLDivElement | null>(null)
+const el = useTemplateRef('el')
 
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 watchEffect(async () => {
-	if (!show.value) return
+	if (!show.value) {
+		return
+	}
 
 	await nextTick()
 	let id = `#author-${selected.value}`
@@ -50,15 +33,32 @@ watchEffect(async () => {
 		el.value.scrollTop = selectedEl.offsetTop - 752
 		el.value.scrollTo({
 			top: selectedEl.offsetTop - 752 + 376,
-			behavior: 'smooth'
+			behavior: 'smooth',
 		})
 	}
 })
 
-function close (): void {
+function close(): void {
 	show.value = false
 }
 </script>
+
+<template>
+	<transition name="fade">
+		<div
+			v-show="show"
+			ref="el"
+			class="authors-list-view"
+		>
+			<s-authors-list
+				v-model="selected"
+				:authors="authors"
+				@update:model-value="close()"
+				class="view__list"
+			></s-authors-list>
+		</div>
+	</transition>
+</template>
 
 <style lang="sass" scoped>
 .fade-enter-active,

@@ -1,3 +1,105 @@
+<script setup lang="ts">
+import { useStore } from '@nanostores/vue'
+import { useClipboard } from '@vueuse/core'
+import html2canvas from 'html2canvas'
+import { nextTick, onUpdated, ref, useTemplateRef } from 'vue'
+import { SButton } from './components/index.js'
+import { useVModel } from './composables/index.js'
+import { $post, resetPost } from './stores/index.js'
+import ImageDescriptionView from './views/ImageDescriptionView.vue'
+import ImageFullscreenView from './views/ImageFullscreenView.vue'
+import ImageMainView from './views/ImageMainView.vue'
+import TextView from './views/TextView.vue'
+
+const image1 = useTemplateRef('image1')
+const image2 = useTemplateRef('image2')
+const image3 = useTemplateRef('image3')
+
+const post = useStore($post)
+const text = useVModel($post, 'text')
+
+const rendering = ref(false)
+const renders = ref<Array<{ src: string, filename: string }>>([])
+
+onUpdated(render)
+
+let timeoutId: ReturnType<typeof setTimeout> | null = null
+let skipNext = false
+
+function resetTimeout(): void {
+	if (timeoutId) {
+		clearTimeout(timeoutId)
+		timeoutId = null
+	}
+}
+
+async function render(): Promise<void> {
+	let { year, title, author, image } = post.value
+
+	// prevent multiple rendering
+	if (skipNext) {
+		return
+	}
+
+	// prevent rendering if required data is missing
+	if (
+		!title
+		|| !year
+		|| !author
+		|| !image
+		|| !image1.value
+		|| !image2.value
+		|| !image3.value
+	) {
+		resetTimeout()
+		skipNext = true
+		renders.value = []
+		await nextTick()
+		skipNext = false
+		return
+	}
+
+	resetTimeout()
+
+	timeoutId = setTimeout(async () => {
+		skipNext = true
+		renders.value = []
+		rendering.value = true
+		await nextTick()
+
+		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
+		for (let [index, el] of images.entries()) {
+			let src = await new Promise<null | string>((resolve) => {
+				html2canvas(el, { logging: false })
+					.then((canvas) => {
+						canvas.toBlob((blob) => {
+							resolve(blob ? URL.createObjectURL(blob) : null)
+						}, 'image/png')
+					})
+					.catch((error: unknown) => {
+						console.error(error)
+						resolve(null)
+					})
+			})
+			if (!src) {
+				continue
+			}
+
+			let filename = `${author}_${title}_${year}_${index + 1}.png`
+			filename = filename.replaceAll(/\s/g, '-')
+			renders.value[index] = { src, filename }
+			await nextTick()
+		}
+
+		rendering.value = false
+		await nextTick()
+		skipNext = false
+	}, 3000)
+}
+
+const { copy, copied } = useClipboard({ source: text })
+</script>
+
 <template>
 	<div class="page">
 		<ul class="page__images">
@@ -41,105 +143,6 @@
 		</div>
 	</div>
 </template>
-
-<script setup lang="ts">
-import { useStore } from '@nanostores/vue'
-import { useClipboard } from '@vueuse/core'
-import html2canvas from 'html2canvas'
-import { nextTick, onUpdated, ref } from 'vue'
-
-import { SButton } from './components/index.js'
-import { useVModel } from './composables/index.js'
-import { $post, resetPost } from './stores/index.js'
-import ImageDescriptionView from './views/ImageDescriptionView.vue'
-import ImageFullscreenView from './views/ImageFullscreenView.vue'
-import ImageMainView from './views/ImageMainView.vue'
-import TextView from './views/TextView.vue'
-
-const image1 = ref<HTMLDivElement | null>(null)
-const image2 = ref<HTMLDivElement | null>(null)
-const image3 = ref<HTMLDivElement | null>(null)
-
-const post = useStore($post)
-const text = useVModel($post, 'text')
-
-const rendering = ref(false)
-const renders = ref<Array<{ src: string; filename: string }>>([])
-
-onUpdated(render)
-
-let timeoutId: ReturnType<typeof setTimeout> | null = null
-let skipNext = false
-
-function resetTimeout (): void {
-	if (timeoutId) {
-		clearTimeout(timeoutId)
-		timeoutId = null
-	}
-}
-
-async function render (): Promise<void> {
-	let { year, title, author, image } = post.value
-
-	// prevent multiple rendering
-	if (skipNext) return
-
-	// prevent rendering if required data is missing
-	if (
-		!title ||
-		!year ||
-		!author ||
-		!image ||
-		!image1.value ||
-		!image2.value ||
-		!image3.value
-	) {
-		resetTimeout()
-		skipNext = true
-		renders.value = []
-		await nextTick()
-		skipNext = false
-		return
-	}
-
-	resetTimeout()
-
-	timeoutId = setTimeout(async () => {
-		skipNext = true
-		renders.value = []
-		rendering.value = true
-		await nextTick()
-
-		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
-		for (let [index, el] of images.entries()) {
-			let src = await new Promise<null | string>(resolve => {
-				html2canvas(el, { logging: false })
-					.then(canvas => {
-						canvas.toBlob(blob => {
-							resolve(blob ? URL.createObjectURL(blob) : null)
-						}, 'image/png')
-					})
-					.catch(error => {
-						console.error(error)
-						resolve(null)
-					})
-			})
-			if (!src) continue
-
-			let filename = `${author}_${title}_${year}_${index + 1}.png`
-			filename = filename.replaceAll(/\s/g, '-')
-			renders.value[index] = { src, filename }
-			await nextTick()
-		}
-
-		rendering.value = false
-		await nextTick()
-		skipNext = false
-	}, 3000)
-}
-
-const { copy, copied } = useClipboard({ source: text })
-</script>
 
 <style lang="sass" scoped>
 .page

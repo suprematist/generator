@@ -11,6 +11,9 @@
     "test:lint": "eslint .",
     "test": "pnpm run /^test:/"
   },
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "dependencies": {
     "@nanostores/persistent": "^1.0.0",
     "@nanostores/vue": "^1.0.0",

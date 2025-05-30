@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
 import { persistentMap } from '@nanostores/persistent'
 
 type Post = {
@@ -24,11 +23,11 @@ const DEFAULT_POST: Post = {
 	image: '',
 	imageLeft: '0px',
 	imageTop: '0px',
-	text: ''
+	text: '',
 }
 
 export const $post = persistentMap<Post>('post:', DEFAULT_POST)
 
-export function resetPost (): void {
+export function resetPost(): void {
 	$post.set(DEFAULT_POST)
 }
