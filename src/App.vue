@@ -68,9 +68,9 @@ async function render(): Promise<void> {
 		await nextTick()
 
 		let images = [
+			image1.value as HTMLElement,
 			image2.value as HTMLElement,
 			image3.value as HTMLElement,
-			image1.value as HTMLElement,
 		]
 		for (let [index, el] of images.entries()) {
 			let src = await new Promise<null | string>((resolve) => {
