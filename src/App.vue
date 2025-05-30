@@ -67,7 +67,11 @@ async function render(): Promise<void> {
 		rendering.value = true
 		await nextTick()
 
-		let images = [image2.value, image3.value, image1.value] as HTMLDivElement[]
+		let images = [
+			image2.value as HTMLElement,
+			image3.value as HTMLElement,
+			image1.value as HTMLElement,
+		]
 		for (let [index, el] of images.entries()) {
 			let src = await new Promise<null | string>((resolve) => {
 				html2canvas(el, { logging: false })
