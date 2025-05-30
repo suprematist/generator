@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "test:tsc": "vue-tsc --noEmit",
     "test:lint": "eslint .",
-    "test:stylelint": "stylelint './src/**/*.{vue,sass}'",
     "test": "pnpm run /^test:/"
   },
   "dependencies": {
@@ -21,28 +20,11 @@
     "vue": "^3.5.14"
   },
   "devDependencies": {
-    "@postanu/eslint-config": "^4.2.0",
-    "@postanu/stylelint-config": "^0.7.7",
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
     "@vitejs/plugin-vue": "^4.5.1",
-    "eslint": "^8.55.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin-import": "^2.29.0",
-    "eslint-plugin-n": "^16.3.1",
-    "eslint-plugin-perfectionist": "^2.5.0",
-    "eslint-plugin-prefer-let": "^3.0.1",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-security": "^1.7.1",
-    "eslint-plugin-unicorn": "^49.0.0",
-    "eslint-plugin-vue": "^9.19.2",
     "postcss": "^8.4.32",
-    "sass": "^1.69.5",
-    "stylelint": "^15.11.0",
     "typescript": "^5.3.3",
     "vite": "^6.3.5",
     "vite-plugin-vue-devtools": "^7.7.6",
-    "vue-eslint-parser": "^9.3.2",
     "vue-tsc": "^2.2.10"
   }
 }
