@@ -6,6 +6,7 @@ import { computed } from 'vue'
 export function useVModels<
 	SomeStore extends MapStore,
 	Value extends StoreValue<SomeStore>,
+	// eslint-disable-next-line @typescript-eslint/no-unnecessary-type-parameters
 	Key extends keyof Value,
 >(store: SomeStore): {
 	[K in Key]: WritableComputedRef<Value[K]>
